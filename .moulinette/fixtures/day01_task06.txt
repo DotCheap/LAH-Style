@@ -1,0 +1,53 @@
+d 1910s
+d 1920s
+d 1930s
+d 1940s
+d 1950s
+d Professors
+d Solvay Conferences on Chemistry
+d Solvay Conferences on Chemistry/Constitution and Configuration of Organic Molecules
+d Solvay Conferences on Chemistry/Isotopes
+d Solvay Conferences on Chemistry/Isotopes/participants
+d Solvay Conferences on Chemistry/Oxygen, and its chemical and biological reactions
+d Solvay Conferences on Chemistry/Vitamins and Hormones
+d Solvay Conferences on Physics
+d Solvay Conferences on Physics/Atoms and electrons
+d Solvay Conferences on Physics/Electric conductivity of metals and related problems
+d Solvay Conferences on Physics/Electrons and photons
+d Solvay Conferences on Physics/Electrons and photons/participants
+d Solvay Conferences on Physics/Magnetism
+d Solvay Conferences on Physics/The structure of matter
+d Solvay Conferences on Physics/The theory of radiation and quanta
+f Professors/Frederic Swarts
+f Professors/Hendrik Lorentz
+f Professors/Paul Karrer
+f Professors/Paul Langevin
+f Professors/William Jackson Pope
+f Solvay Conferences on Physics/Electrons and photons/participants/A. Einstein
+f Solvay Conferences on Physics/Electrons and photons/participants/E. Schrodinger
+f Solvay Conferences on Physics/Electrons and photons/participants/H.A. Lorentz
+f Solvay Conferences on Physics/Electrons and photons/participants/M. Planck
+f Solvay Conferences on Physics/Electrons and photons/participants/M. Sklodowska-Curie
+f Solvay Conferences on Physics/Electrons and photons/participants/N. Bohr
+f Solvay Conferences on Physics/Electrons and photons/participants/W. Heisenberg
+f Solvay Conferences on Physics/Electrons and photons/participants/W.L. Bragg
+l 1910s/1911 -> ../Solvay Conferences on Physics/The theory of radiation and quanta
+l 1910s/1913 -> ../Solvay Conferences on Physics/The structure of matter
+l 1920s/1921 -> ../Solvay Conferences on Physics/Atoms and electrons
+l 1920s/1924 -> ../Solvay Conferences on Physics/Electric conductivity of metals and related problems
+l 1920s/1927 -> ../Solvay Conferences on Physics/Electrons and photons
+l 1930s/1930 -> ../Solvay Conferences on Physics/Magnetism
+l 1930s/1931 -> ../Solvay Conferences on Chemistry/Constitution and Configuration of Organic Molecules
+l 1930s/1934 -> ../Solvay Conferences on Chemistry/Oxygen, and its chemical and biological reactions
+l 1930s/1937 -> ../Solvay Conferences on Chemistry/Vitamins and Hormones
+l 1940s/1947 -> ../Solvay Conferences on Chemistry/Isotopes
+l Solvay Conferences on Chemistry/Constitution and Configuration of Organic Molecules/chair -> ../../Professors/William Jackson Pope
+l Solvay Conferences on Chemistry/Isotopes/chair -> ../../Professors/Paul Karrer
+l Solvay Conferences on Chemistry/Oxygen, and its chemical and biological reactions/chair -> ../../Professors/William Jackson Pope
+l Solvay Conferences on Chemistry/Vitamins and Hormones/chair -> ../../Professors/Frederic Swarts
+l Solvay Conferences on Physics/Atoms and electrons/chair -> ../../Professors/Hendrik Lorentz
+l Solvay Conferences on Physics/Electric conductivity of metals and related problems/chair -> ../../Professors/Hendrik Lorentz
+l Solvay Conferences on Physics/Electrons and photons/chair -> ../../Professors/Hendrik Lorentz
+l Solvay Conferences on Physics/Magnetism/chair -> ../../Professors/Paul Langevin
+l Solvay Conferences on Physics/The structure of matter/chair -> ../../Professors/Hendrik Lorentz
+l Solvay Conferences on Physics/The theory of radiation and quanta/chair -> ../../Professors/Hendrik Lorentz

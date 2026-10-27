@@ -1,0 +1,51 @@
+name: Moulinette
+
+# Corrige automatiquement les exercices de la piscine a chaque push.
+# Le detail des resultats apparait dans l'onglet "Actions" > le run > "Summary".
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: moulinette-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  correction:
+    name: Correction des exercices
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Installer Criterion et la CSFML
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q --no-install-recommends libcriterion-dev libcsfml-dev
+
+      - name: Corriger les exercices
+        run: python3 .moulinette/grade.py --summary "$GITHUB_STEP_SUMMARY"
+
+  coding-style:
+    name: Coding style (indicatif)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lancer le coding-style-checker d'Epitech
+        run: |
+          mkdir -p "$RUNNER_TEMP/reports"
+          docker run --rm --security-opt "label:disable" \
+            -v "$PWD":/mnt/delivery -v "$RUNNER_TEMP/reports":/mnt/reports \
+            ghcr.io/epitech/coding-style-checker:latest /mnt/delivery /mnt/reports
+
+      - name: Rapport de coding style
+        if: always()
+        run: python3 .moulinette/style_report.py "$RUNNER_TEMP/reports/coding-style-reports.log" >> "$GITHUB_STEP_SUMMARY"
