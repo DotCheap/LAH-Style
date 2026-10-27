@@ -20,6 +20,9 @@ rendu/
 └── ...
 ```
 
+Les solutions d'une piscine déjà faite sont gardées à part, sur la branche
+[`solutions`](../../../tree/solutions/rendu) du dépôt.
+
 ## Faire corriger son travail
 
 1. Commitez et poussez :

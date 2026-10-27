@@ -19,6 +19,9 @@ Piscine partie 1 : Grade A
 
 Pour corriger en local : `.github/correction/corriger.sh day03`.
 
+Les solutions de la piscine déjà faite (Grade A) sont sur la branche
+[`solutions`](../../tree/solutions/rendu).
+
 Détails : [liste des exercices](exercices/README.md) · [comment rendre](rendu/README.md).
 
 ## Outils
