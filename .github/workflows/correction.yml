@@ -27,15 +27,47 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      # Seuls les dossiers modifiés par le push (ou la pull request) sont
+      # corrigés. Le lancement manuel corrige ce qui est demandé, ou tout.
+      - name: Choisir les dossiers à corriger
+        id: choix
+        env:
+          EVENT: ${{ github.event_name }}
+          BEFORE: ${{ github.event.before }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          INPUT: ${{ inputs.taches }}
+        run: |
+          case "$EVENT" in
+            push) taches="$(bash .github/correction/selection.sh "$BEFORE" HEAD)" ;;
+            pull_request) taches="$(bash .github/correction/selection.sh "$PR_BASE" HEAD)" ;;
+            *) taches="${INPUT:-tout}" ;;
+          esac
+          echo "Dossiers à corriger : ${taches:-aucun}"
+          echo "taches=$taches" >> "$GITHUB_OUTPUT"
+          # Criterion ne sert qu'aux tests unitaires des Day06 et Day12.
+          case " $taches " in
+            *" tout "* | *day06* | *day12*) echo "criterion=oui" >> "$GITHUB_OUTPUT" ;;
+          esac
 
       - name: Installer Criterion
+        if: steps.choix.outputs.criterion == 'oui'
         run: sudo apt-get update && sudo apt-get install -y libcriterion-dev
 
       # AddressSanitizer plante avec l'ASLR à 32 bits des runners Ubuntu 24.04.
       - name: Préparer AddressSanitizer
+        if: steps.choix.outputs.taches != ''
         run: sudo sysctl -w vm.mmap_rnd_bits=28
 
       - name: Corriger
+        if: steps.choix.outputs.taches != ''
         env:
-          TACHES: ${{ inputs.taches }}
-        run: bash .github/correction/corriger.sh $TACHES
+          TACHES: ${{ steps.choix.outputs.taches }}
+        run: |
+          if [ "$TACHES" = "tout" ]; then
+            bash .github/correction/corriger.sh
+          else
+            bash .github/correction/corriger.sh $TACHES
+          fi

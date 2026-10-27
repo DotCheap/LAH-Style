@@ -37,6 +37,11 @@ Les solutions d'une piscine déjà faite sont gardées à part, sur la branche
    **Correction**. Le résumé donne, pour chaque dossier, le nombre de tâches
    validées, en échec et non rendues, puis le détail de chaque échec.
 
+Seuls les dossiers modifiés par le push sont corrigés : pousser
+`rendu/day03/` ne corrige que le Day03. Pour tout corriger, lancez le workflow
+à la main (onglet **Actions**, **Correction**, **Run workflow**), en
+indiquant éventuellement un dossier ou une tâche.
+
 Une tâche absente n'est pas une erreur : elle apparaît comme « non rendue ».
 Le workflow est rouge dès qu'une tâche rendue échoue.
 

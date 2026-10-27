@@ -14,8 +14,8 @@ Piscine partie 1 : Grade A
 
 1. Lisez le sujet dans `exercices/<dossier>/` (PDF officiel et `sujet.md`).
 2. Mettez votre travail dans `rendu/<dossier>/`.
-3. Poussez sur GitHub : le workflow **Correction** compile et teste chaque
-   tâche rendue, et affiche le résultat dans l'onglet **Actions**.
+3. Poussez sur GitHub : le workflow **Correction** compile et teste les
+   tâches des dossiers modifiés, et affiche le résultat dans l'onglet **Actions**.
 
 Pour corriger en local : `.github/correction/corriger.sh day03`.
 
@@ -35,6 +35,7 @@ Détails : [liste des exercices](exercices/README.md) · [comment rendre](rendu/
 .github/
 ├── correction/
 │   ├── corriger.sh          # script de correction (local et CI)
+│   ├── selection.sh         # dossiers modifiés par un push
 │   ├── lib/                 # test.h, test_lib.sh, fichiers fournis aux tests
 │   └── <dossier>/<tâche>/   # config, test.c ou test.sh, expected.txt
 └── workflows/
