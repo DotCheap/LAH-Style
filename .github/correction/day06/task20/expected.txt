@@ -1,0 +1,6 @@
+I like \0a ponies!
+abc
+
+tab\09here
+\01\1f\7f
+caf\e9

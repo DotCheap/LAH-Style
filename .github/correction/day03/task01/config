@@ -1,0 +1,4 @@
+TITLE="my_print_alpha"
+FILES="my_print_alpha.c"
+ALLOWED="my_putchar"
+HELPERS="my_putchar.c"

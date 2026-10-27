@@ -1,0 +1,5 @@
+TITLE="rush-1-1"
+FILES="rush-1-1/*.c"
+ALLOWED="my_putchar write"
+HELPERS="my_putchar.c"
+SIBLINGS="no"

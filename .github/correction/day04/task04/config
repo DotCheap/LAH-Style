@@ -1,0 +1,3 @@
+TITLE="my_evil_str"
+FILES="my_evil_str.c"
+ALLOWED="my_putchar"

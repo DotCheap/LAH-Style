@@ -1,0 +1,4 @@
+TITLE="my_apply_on_nodes"
+FILES="my_apply_on_nodes.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

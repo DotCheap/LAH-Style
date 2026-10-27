@@ -1,0 +1,4 @@
+TITLE="my_compute_factorial_it"
+FILES="my_compute_factorial_it.c"
+ALLOWED="my_putchar"
+ITERATIVE="my_compute_factorial_it"

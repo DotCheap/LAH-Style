@@ -1,0 +1,4 @@
+TITLE="my_putnbr_base"
+FILES="my_putnbr_base.c"
+ALLOWED="my_putchar"
+HELPERS="my_putchar.c"

@@ -1,0 +1,3 @@
+TITLE="count_valid_queens_placements"
+FILES="count_valid_queens_placements.c"
+ALLOWED="my_putchar"

@@ -1,0 +1,3 @@
+TITLE="my_find_prime_sup"
+FILES="my_find_prime_sup.c"
+ALLOWED="my_putchar"

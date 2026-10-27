@@ -1,0 +1,4 @@
+TITLE="calc"
+FILES="Makefile"
+MODE="script"
+TIMEOUT=180

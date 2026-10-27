@@ -1,0 +1,3 @@
+TITLE="my_strupcase"
+FILES="my_strupcase.c"
+ALLOWED="my_putchar"

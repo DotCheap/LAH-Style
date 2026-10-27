@@ -1,0 +1,4 @@
+TITLE="my_concat_list"
+FILES="my_concat_list.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

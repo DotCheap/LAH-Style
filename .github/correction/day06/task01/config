@@ -1,0 +1,3 @@
+TITLE="my_strcpy"
+FILES="my_strcpy.c"
+ALLOWED="my_putchar"

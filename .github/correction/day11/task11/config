@@ -1,0 +1,4 @@
+TITLE="my_merge"
+FILES="my_merge.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

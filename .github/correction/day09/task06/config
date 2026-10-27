@@ -1,0 +1,4 @@
+TITLE="swap_endian_color"
+FILES="swap_endian_color.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

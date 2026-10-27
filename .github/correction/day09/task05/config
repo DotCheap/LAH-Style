@@ -1,0 +1,4 @@
+TITLE="get_color"
+FILES="get_color.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

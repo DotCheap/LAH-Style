@@ -1,0 +1,4 @@
+TITLE="Makefile de la libmy"
+FILES="lib/my/Makefile"
+MODE="script"
+TIMEOUT=120

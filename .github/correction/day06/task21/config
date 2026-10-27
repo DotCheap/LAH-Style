@@ -1,0 +1,5 @@
+TITLE="my_showmem"
+FILES="my_showmem.c"
+ALLOWED="my_putchar"
+HELPERS="my_putchar.c"
+IGNORE_TRAILING_SPACES="yes"

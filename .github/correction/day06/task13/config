@@ -1,0 +1,3 @@
+TITLE="my_str_isnum"
+FILES="my_str_isnum.c"
+ALLOWED="my_putchar"

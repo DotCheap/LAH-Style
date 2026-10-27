@@ -1,0 +1,4 @@
+TITLE="convert_base"
+FILES="convert_base.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

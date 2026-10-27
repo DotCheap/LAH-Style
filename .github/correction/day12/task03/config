@@ -1,0 +1,4 @@
+TITLE="grep"
+FILES="grep/Makefile"
+MODE="script"
+TIMEOUT=120

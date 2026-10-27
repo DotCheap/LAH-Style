@@ -1,0 +1,4 @@
+TITLE="my_rev_list"
+FILES="my_rev_list.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

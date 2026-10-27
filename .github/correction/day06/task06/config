@@ -1,0 +1,3 @@
+TITLE="my_strcmp"
+FILES="my_strcmp.c"
+ALLOWED="my_putchar"

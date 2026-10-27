@@ -1,0 +1,5 @@
+TITLE="my_params_to_array"
+FILES="my_params_to_array.c"
+LIBMY="yes"
+ALLOWED="write malloc free"
+EXTRA_CFLAGS="-include info_param.h"

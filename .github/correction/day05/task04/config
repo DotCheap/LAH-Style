@@ -1,0 +1,4 @@
+TITLE="my_compute_power_rec"
+FILES="my_compute_power_rec.c"
+ALLOWED="my_putchar"
+RECURSIVE="my_compute_power_rec"

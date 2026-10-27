@@ -1,0 +1,3 @@
+TITLE="my_getnbr"
+FILES="my_getnbr.c"
+ALLOWED="my_putchar"

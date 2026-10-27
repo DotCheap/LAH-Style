@@ -1,0 +1,3 @@
+TITLE="my_compute_square_root"
+FILES="my_compute_square_root.c"
+ALLOWED="my_putchar"

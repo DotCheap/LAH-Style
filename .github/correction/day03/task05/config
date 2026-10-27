@@ -1,0 +1,4 @@
+TITLE="my_print_comb"
+FILES="my_print_comb.c"
+ALLOWED="my_putchar"
+HELPERS="my_putchar.c"

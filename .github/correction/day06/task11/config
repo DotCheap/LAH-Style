@@ -1,0 +1,4 @@
+TITLE="tests unitaires II"
+FILES="tests/test_my_strstr.c tests/test_my_strncmp.c tests/test_my_strcapitalize.c"
+MODE="script"
+TIMEOUT=60

@@ -1,0 +1,4 @@
+TITLE="my_advanced_sort_word_array"
+FILES="my_advanced_sort_word_array.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

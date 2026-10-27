@@ -1,0 +1,4 @@
+TITLE="my_delete_nodes"
+FILES="my_delete_nodes.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

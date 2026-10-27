@@ -1,0 +1,4 @@
+TITLE="langue (étape 4)"
+FILES="*.c"
+MODE="script"
+TIMEOUT=120

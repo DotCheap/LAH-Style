@@ -1,0 +1,4 @@
+TITLE="infin_add"
+FILES="Makefile"
+MODE="script"
+TIMEOUT=180

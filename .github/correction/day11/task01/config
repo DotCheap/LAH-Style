@@ -1,0 +1,4 @@
+TITLE="my_params_to_list"
+FILES="my_params_to_list.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

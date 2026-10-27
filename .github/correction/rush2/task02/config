@@ -1,0 +1,4 @@
+TITLE="fréquences (étape 3)"
+FILES="*.c"
+MODE="script"
+TIMEOUT=120

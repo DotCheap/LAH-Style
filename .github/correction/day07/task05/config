@@ -1,0 +1,5 @@
+TITLE="my_rev_params"
+FILES="task05/*.c"
+MODE="program"
+LIBMY="yes"
+ALLOWED="write"

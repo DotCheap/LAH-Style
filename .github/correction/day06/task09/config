@@ -1,0 +1,3 @@
+TITLE="my_strlowcase"
+FILES="my_strlowcase.c"
+ALLOWED="my_putchar"

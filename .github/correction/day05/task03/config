@@ -1,0 +1,4 @@
+TITLE="my_compute_power_it"
+FILES="my_compute_power_it.c"
+ALLOWED="my_putchar"
+ITERATIVE="my_compute_power_it"

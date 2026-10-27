@@ -1,0 +1,4 @@
+TITLE="my.h"
+FILES="include/my.h"
+MODE="script"
+TIMEOUT=60

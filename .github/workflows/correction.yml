@@ -1,0 +1,41 @@
+name: Correction
+
+on:
+  push:
+    paths:
+      - "rendu/**"
+      - ".github/correction/**"
+      - ".github/workflows/correction.yml"
+  pull_request:
+    paths:
+      - "rendu/**"
+      - ".github/correction/**"
+      - ".github/workflows/correction.yml"
+  workflow_dispatch:
+    inputs:
+      taches:
+        description: "Dossiers ou tâches à corriger (ex. « day03 » ou « day06/task18 »), vide = tout"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  corriger:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Installer Criterion
+        run: sudo apt-get update && sudo apt-get install -y libcriterion-dev
+
+      # AddressSanitizer plante avec l'ASLR à 32 bits des runners Ubuntu 24.04.
+      - name: Préparer AddressSanitizer
+        run: sudo sysctl -w vm.mmap_rnd_bits=28
+
+      - name: Corriger
+        env:
+          TACHES: ${{ inputs.taches }}
+        run: bash .github/correction/corriger.sh $TACHES

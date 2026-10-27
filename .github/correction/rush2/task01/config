@@ -1,0 +1,4 @@
+TITLE="comptage des lettres (étapes 1-2)"
+FILES="*.c"
+MODE="script"
+TIMEOUT=120

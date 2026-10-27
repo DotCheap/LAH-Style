@@ -1,0 +1,4 @@
+TITLE="tests unitaires I"
+FILES="tests/test_my_strncpy.c tests/test_my_revstr.c"
+MODE="script"
+TIMEOUT=60

@@ -1,0 +1,3 @@
+TITLE="my_str_isprintable"
+FILES="my_str_isprintable.c"
+ALLOWED="my_putchar"

@@ -1,0 +1,5 @@
+TITLE="my_print_params"
+FILES="task04/*.c"
+MODE="program"
+LIBMY="yes"
+ALLOWED="write"

@@ -1,0 +1,5 @@
+TITLE="my_sort_params"
+FILES="task06/*.c"
+MODE="program"
+LIBMY="yes"
+ALLOWED="write"

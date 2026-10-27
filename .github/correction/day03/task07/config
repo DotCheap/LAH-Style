@@ -1,0 +1,4 @@
+TITLE="my_put_nbr"
+FILES="my_put_nbr.c"
+ALLOWED="my_putchar"
+HELPERS="my_putchar.c"

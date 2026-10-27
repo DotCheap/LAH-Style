@@ -1,0 +1,3 @@
+TITLE="my_str_isalpha"
+FILES="my_str_isalpha.c"
+ALLOWED="my_putchar"

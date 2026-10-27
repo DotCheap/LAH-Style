@@ -1,0 +1,42 @@
+== rush(5, 3) ==
+ABBBC
+B   B
+ABBBC
+== rush(5, 1) ==
+BBBBB
+== rush(1, 1) ==
+B
+== rush(1, 5) ==
+B
+B
+B
+B
+B
+== rush(4, 4) ==
+ABBC
+B  B
+B  B
+ABBC
+== rush(2, 2) ==
+AC
+AC
+== rush(2, 1) ==
+BB
+== rush(1, 2) ==
+B
+B
+== rush(10, 6) ==
+ABBBBBBBBC
+B        B
+B        B
+B        B
+B        B
+ABBBBBBBBC
+== rush(3, 7) ==
+ABC
+B B
+B B
+B B
+B B
+B B
+ABC

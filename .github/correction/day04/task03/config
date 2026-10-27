@@ -1,0 +1,3 @@
+TITLE="my_strlen"
+FILES="my_strlen.c"
+ALLOWED="my_putchar"

@@ -1,0 +1,3 @@
+TITLE="my_swap"
+FILES="my_swap.c"
+ALLOWED="my_putchar"

@@ -1,0 +1,4 @@
+TITLE="libmy.a (build.sh)"
+FILES="lib/my/build.sh"
+MODE="script"
+TIMEOUT=60

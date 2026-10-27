@@ -1,0 +1,4 @@
+TITLE="my_compute_factorial_rec"
+FILES="my_compute_factorial_rec.c"
+ALLOWED="my_putchar"
+RECURSIVE="my_compute_factorial_rec"

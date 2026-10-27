@@ -1,0 +1,4 @@
+TITLE="my_add_in_sorted_list"
+FILES="my_add_in_sorted_list.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

@@ -1,0 +1,4 @@
+TITLE="my_strdup"
+FILES="my_strdup.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

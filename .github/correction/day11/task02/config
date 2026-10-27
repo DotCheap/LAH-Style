@@ -1,0 +1,4 @@
+TITLE="my_list_size"
+FILES="my_list_size.c"
+LIBMY="yes"
+ALLOWED="write malloc free"

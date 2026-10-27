@@ -1,0 +1,4 @@
+TITLE="cat"
+FILES="cat/Makefile"
+MODE="script"
+TIMEOUT=120

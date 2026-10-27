@@ -1,0 +1,4 @@
+TITLE="push_that.sh"
+FILES="push_that.sh"
+MODE="script"
+TIMEOUT=60

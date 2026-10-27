@@ -1,0 +1,4 @@
+TITLE="tests unitaires III"
+FILES="tests/test_my_str_isalpha.c tests/test_my_str_islower.c tests/test_my_str_isprintable.c"
+MODE="script"
+TIMEOUT=60

@@ -1,0 +1,4 @@
+TITLE="my_strncat"
+FILES="my_strncat.c"
+LIBMY="yes"
+ALLOWED="write"
