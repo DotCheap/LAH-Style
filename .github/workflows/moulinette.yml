@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Installer Criterion et la CSFML
         run: |
@@ -37,14 +37,14 @@ jobs:
     timeout-minutes: 15
     continue-on-error: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Lancer le coding-style-checker d'Epitech
         run: |
           mkdir -p "$RUNNER_TEMP/reports"
           docker run --rm --security-opt "label:disable" \
             -v "$PWD":/mnt/delivery -v "$RUNNER_TEMP/reports":/mnt/reports \
-            ghcr.io/epitech/coding-style-checker:latest /mnt/delivery /mnt/reports
+            ghcr.io/epitech/coding-style-checker:devel /mnt/delivery /mnt/reports
 
       - name: Rapport de coding style
         if: always()
