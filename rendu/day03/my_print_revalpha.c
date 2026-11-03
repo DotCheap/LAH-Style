@@ -1,11 +1,9 @@
 #include <stdio.h>
 int my_print_revalpha(void){
     int lettre = 122;
-    putchar(lettre);
-    lettre = lettre - 1; 
-    putchar (lettre);
     while (lettre > 96){
-        putchar(lettre);
+        putchar (lettre);
+        lettre = lettre - 1; 
     }
     return 0;
 }
