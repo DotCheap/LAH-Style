@@ -6,7 +6,6 @@ int my_print_revalpha(void){
     putchar (lettre);
     while (lettre > 96){
         putchar(lettre);
-        lettre = lettre - 1;
     }
     return 0;
 }
