@@ -1,4 +1,3 @@
 TITLE="my_isneg"
 FILES="my_isneg.c"
-ALLOWED="my_putchar"
 HELPERS="my_putchar.c"

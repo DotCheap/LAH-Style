@@ -1,3 +1,2 @@
 TITLE="my_revstr"
 FILES="my_revstr.c"
-ALLOWED="my_putchar"

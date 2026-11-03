@@ -1,4 +1,3 @@
 TITLE="my_sort_list"
 FILES="my_sort_list.c"
 LIBMY="yes"
-ALLOWED="write malloc free"

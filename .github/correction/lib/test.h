@@ -13,6 +13,15 @@
 
 static int test_failures = 0;
 
+/*
+** stdout sans tampon : les fonctions rendues peuvent ecrire avec putchar ou
+** printf (tamponnes) comme avec write, la sortie reste dans le bon ordre.
+*/
+__attribute__((constructor)) static void test_unbuffered_stdout(void)
+{
+    setvbuf(stdout, NULL, _IONBF, 0);
+}
+
     #define CHECK(expr) \
     do { \
         if (!(expr)) { \

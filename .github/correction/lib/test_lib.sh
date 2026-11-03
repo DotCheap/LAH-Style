@@ -49,22 +49,6 @@ check_output() {
     cat "$STDERR" >&2
 }
 
-# check_symbols_in BINAIRE "fonctions autorisées"
-# Vérifie les fonctions de la libc importées par un binaire.
-check_symbols_in() {
-    local bin="$1" allowed="$2" sym bad=""
-    local startup="__libc_start_main __cxa_finalize __gmon_start__ _ITM_registerTMCloneTable
-        _ITM_deregisterTMCloneTable __stack_chk_fail __errno_location"
-    for sym in $(nm -D --undefined-only "$bin" | awk '{ print $2 }' | sed 's/@.*//'); do
-        printf '%s\n' $allowed $startup | grep -qxF "$sym" && continue
-        bad="$bad $sym"
-    done
-    if [ -n "$bad" ]; then
-        fail "fonction(s) interdite(s) :$bad (autorisées : $allowed)"
-        return 1
-    fi
-}
-
 # check_makefile DOSSIER BINAIRE : make, binaire produit, pas de relink, fclean.
 check_makefile() {
     local dir="$1" bin="$2" before after

@@ -1,4 +1,3 @@
 TITLE="count_island"
 FILES="count_island.c"
 LIBMY="yes"
-ALLOWED="write malloc free"

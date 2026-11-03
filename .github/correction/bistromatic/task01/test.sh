@@ -1,7 +1,6 @@
 . "$CORR/lib/test_lib.sh"
 
 check_makefile . calc || finish
-check_symbols_in calc "read write malloc free exit"
 
 # calc EXPRESSION BASE OPÉRATEURS : lance ./calc sur l'expression.
 calc() {

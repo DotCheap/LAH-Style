@@ -1,7 +1,6 @@
 . "$CORR/lib/test_lib.sh"
 
 check_makefile . eval_expr || finish
-check_symbols_in eval_expr "write malloc free"
 check_output './eval_expr "(3+2)*5"' 0 '25' -- ./eval_expr '(3+2)*5'
 check_output './eval_expr "3+2*5"' 0 '13' -- ./eval_expr '3+2*5'
 check_output './eval_expr "10-2-3"' 0 '5' -- ./eval_expr '10-2-3'

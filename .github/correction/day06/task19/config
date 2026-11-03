@@ -1,3 +1,2 @@
 TITLE="my_getnbr_base"
 FILES="my_getnbr_base.c"
-ALLOWED="my_putchar"

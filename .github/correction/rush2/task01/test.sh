@@ -1,7 +1,6 @@
 . "$CORR/lib/test_lib.sh"
 
 build_epitech rush2 || finish
-check_symbols_in rush2 "write"
 export textes="$TEST_DIR/../textes"
 
 # count TEXTE LETTRES... : ne garde que « lettre:nombre » des premières lignes.

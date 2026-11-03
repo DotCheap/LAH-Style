@@ -1,4 +1,3 @@
 TITLE="my_showstr"
 FILES="my_showstr.c"
-ALLOWED="my_putchar"
 HELPERS="my_putchar.c"

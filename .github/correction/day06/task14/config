@@ -1,3 +1,2 @@
 TITLE="my_str_islower"
 FILES="my_str_islower.c"
-ALLOWED="my_putchar"

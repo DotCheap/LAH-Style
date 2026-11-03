@@ -1,7 +1,6 @@
 . "$CORR/lib/test_lib.sh"
 
 check_makefile grep grep || finish
-check_symbols_in grep/grep "open read write close malloc free"
 mkdir -p data
 printf 'root:x:0:0\nlooneytunes:x:1000:100:looney tunes\nbin:x:2:2\nlooney\n' > data/passwd
 printf 'http 80/tcp\nhttps 443/tcp\nssh 22/tcp\n' > data/services

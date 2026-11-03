@@ -1,4 +1,3 @@
 TITLE="my_print_revalpha"
 FILES="my_print_revalpha.c"
-ALLOWED="my_putchar"
 HELPERS="my_putchar.c"

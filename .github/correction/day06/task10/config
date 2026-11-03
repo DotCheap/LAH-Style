@@ -1,3 +1,2 @@
 TITLE="my_strcapitalize"
 FILES="my_strcapitalize.c"
-ALLOWED="my_putchar"

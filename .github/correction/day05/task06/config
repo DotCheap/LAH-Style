@@ -1,3 +1,2 @@
 TITLE="my_is_prime"
 FILES="my_is_prime.c"
-ALLOWED="my_putchar"

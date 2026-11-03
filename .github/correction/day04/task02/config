@@ -1,4 +1,3 @@
 TITLE="my_putstr"
 FILES="my_putstr.c"
-ALLOWED="my_putchar"
 HELPERS="my_putchar.c"

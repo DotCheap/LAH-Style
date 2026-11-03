@@ -18,7 +18,6 @@
 #              program : FILES compilés en un programme, puis test.sh ;
 #              script : test.sh lancé dans une copie de rendu/<projet>/.
 #   FILES      fichiers rendus, relatifs à rendu/<projet>/ (motifs acceptés)
-#   ALLOWED    fonctions externes autorisées
 #   LIBMY      yes : construit rendu/<projet>/lib/my/*.c en libmy.a et la lie
 #   SIBLINGS   no : n'utilise pas les autres .c du dossier (par défaut, comme
 #              chez Epitech, ils sont disponibles via une archive)
@@ -41,7 +40,6 @@ CFLAGS="-Wall -Wextra -Werror"
 SANITIZE="-fsanitize=address,undefined -fno-omit-frame-pointer -g"
 DEFAULT_TIMEOUT=10
 # Symboles ajoutés par le compilateur, toujours tolérés.
-IMPLICIT_SYMBOLS="__stack_chk_fail _GLOBAL_OFFSET_TABLE_"
 
 export ASAN_OPTIONS="detect_leaks=0:abort_on_error=0"
 export UBSAN_OPTIONS="halt_on_error=1:print_stacktrace=1"
@@ -177,24 +175,6 @@ build_siblings() {
     [ "$#" -eq 0 ] && return
     ar rcs "$w/sib/libsib.a" "$@"
     LINK_SIB="-L$w/sib -lsib"
-    SIB_DEFINED="$(nm --defined-only "$@" | awk 'NF == 3 { print $3 }')"
-}
-
-# Vérifie que les objets ($@) n'appellent que des fonctions autorisées.
-check_symbols() {
-    local defined undefined forbidden="" sym
-    defined="$(nm --defined-only "$@" | awk 'NF == 3 { print $3 }')"
-    undefined="$(nm -u "$@" | awk 'NF >= 2 { print $2 }' | sort -u)"
-    for sym in $undefined; do
-        # shellcheck disable=SC2086
-        printf '%s\n' $defined $SIB_DEFINED $ALLOWED $IMPLICIT_SYMBOLS | grep -qxF "$sym" && continue
-        forbidden="$forbidden $sym"
-    done
-    if [ -n "$forbidden" ]; then
-        REASON="fonction(s) interdite(s) :$forbidden"
-        echo "Fonctions autorisées : ${ALLOWED:-aucune}" >> "$LOG"
-        return 1
-    fi
 }
 
 # Analyse la sortie d'erreur d'un test exécuté avec sanitizers.
@@ -245,12 +225,12 @@ grade_task() {
     local id="$1" dir="$CORR/$1" src="$RENDU/${1%%/*}" w="$WORK/$1"
     local fn obj found status
 
-    MODE="function"; FILES=""; ALLOWED=""; LIBMY=""; HELPERS=""; SIBLINGS="yes"
+    MODE="function"; FILES=""; LIBMY=""; HELPERS=""; SIBLINGS="yes"
     RECURSIVE=""; ITERATIVE=""; TIMEOUT="$DEFAULT_TIMEOUT"
     IGNORE_TRAILING_SPACES=""; EXTRA_CFLAGS=""
     # shellcheck disable=SC1091
     . "$dir/config"
-    REASON=""; LOG="$w/log"; LINK_LIBMY=""; LIB_OBJS=(); LINK_SIB=""; SIB_DEFINED=""
+    REASON=""; LOG="$w/log"; LINK_LIBMY=""; LIB_OBJS=(); LINK_SIB=""
     mkdir -p "$w/plain" "$w/build" "$w/run"
     : > "$LOG"
     INCLUDES="-I$src/include -I$src/lib/my -I$CORR/lib $EXTRA_CFLAGS"
@@ -299,14 +279,11 @@ grade_task() {
     fi
     [ "$SIBLINGS" = "yes" ] && build_siblings "$src" "$w"
 
-    # 2. Pas de main (sauf programme), pas de fonction interdite.
+    # 2. Pas de main (sauf programme).
     if [ "$MODE" = "function" ] && [ "${#OBJS[@]}" -gt 0 ] \
             && nm --defined-only "${OBJS[@]}" | awk '{ print $3 }' | grep -qx 'main'; then
         REASON="les fichiers rendus ne doivent pas contenir de main"
         return 1
-    fi
-    if [ "$((${#OBJS[@]} + ${#LIB_OBJS[@]}))" -gt 0 ]; then
-        check_symbols "${OBJS[@]}" "${LIB_OBJS[@]}" || return 1
     fi
 
     # 3. Contraintes récursif / itératif.

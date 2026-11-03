@@ -1,7 +1,6 @@
 . "$CORR/lib/test_lib.sh"
 
 check_makefile cat cat || finish
-check_symbols_in cat/cat "open read write close"
 mkdir -p data
 printf 'Bonjour\ntout le monde\n' > data/f1
 printf 'sans saut de ligne' > data/f2

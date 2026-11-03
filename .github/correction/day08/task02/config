@@ -1,4 +1,3 @@
 TITLE="concat_params"
 FILES="concat_params.c"
 LIBMY="yes"
-ALLOWED="write malloc free"

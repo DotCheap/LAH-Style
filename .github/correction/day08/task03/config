@@ -1,4 +1,3 @@
 TITLE="my_show_word_array"
 FILES="my_show_word_array.c"
 LIBMY="yes"
-ALLOWED="write malloc free"

@@ -1,4 +1,3 @@
 TITLE="my_print_comb2"
 FILES="my_print_comb2.c"
-ALLOWED="my_putchar"
 HELPERS="my_putchar.c"

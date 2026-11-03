@@ -1,4 +1,3 @@
 TITLE="my_print_digits"
 FILES="my_print_digits.c"
-ALLOWED="my_putchar"
 HELPERS="my_putchar.c"

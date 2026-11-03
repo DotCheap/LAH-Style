@@ -36,5 +36,5 @@ La norme de code Epitech est dans [`coding-style.pdf`](coding-style.pdf).
 
 Les tests sont dans `.github/correction/<dossier>/<tâche>/` :
 
-- `config` : fichiers à rendre (`FILES`), fonctions autorisées (`ALLOWED`), mode de test, etc. (la liste complète des variables est en tête de `.github/correction/corriger.sh`) ;
+- `config` : fichiers à rendre (`FILES`), mode de test, etc. (la liste complète des variables est en tête de `.github/correction/corriger.sh`) ;
 - `test.c` (+ `expected.txt`) pour tester des fonctions, ou `test.sh` pour tester des programmes et des scripts (fonctions utiles dans `.github/correction/lib/test_lib.sh`).

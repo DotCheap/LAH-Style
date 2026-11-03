@@ -1,3 +1,2 @@
 TITLE="my_str_isupper"
 FILES="my_str_isupper.c"
-ALLOWED="my_putchar"

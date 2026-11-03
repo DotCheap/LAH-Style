@@ -1,4 +1,3 @@
 TITLE="my_strcat"
 FILES="my_strcat.c"
 LIBMY="yes"
-ALLOWED="write"

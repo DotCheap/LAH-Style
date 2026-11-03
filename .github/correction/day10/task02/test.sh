@@ -1,7 +1,6 @@
 . "$CORR/lib/test_lib.sh"
 
 check_makefile do_op do-op || finish
-check_symbols_in do_op/do-op "write malloc free"
 cd do_op || finish
 check_output "./do-op (sans argument)" 84 "" -- ./do-op
 check_output "./do-op 1 +" 84 "" -- ./do-op 1 +
