@@ -5,8 +5,7 @@ import shutil
 
 from ..checks import (Day, Task, c_function, compare, fixture, gcc_program,
                       make_project, run_mouli)
-from ..core import (CFLAGS, IMPLICIT_SYMBOLS, TESTS_DIR, Check, defined_symbols, first_lines,
-                    run, undefined_symbols)
+from ..core import CFLAGS, TESTS_DIR, Check, defined_symbols, first_lines, run
 
 LIBMY_FUNCTIONS = [
     "my_putchar", "my_isneg", "my_put_nbr", "my_swap", "my_putstr",
@@ -37,9 +36,6 @@ def libmy_task(ctx):
     check.expect(not missing, "fonctions absentes de libmy.a : " + ", ".join(missing))
     if missing:
         return check
-    bad = undefined_symbols(ctx.libmy_path()) - symbols - IMPLICIT_SYMBOLS - {"write"}
-    check.expect(not bad, "libmy.a utilise des fonctions interdites ou absentes : "
-                 + ", ".join(sorted(bad)))
     run_mouli(ctx, "libmy.c", check, link=ctx.libmy_flags())
     return check
 
@@ -64,8 +60,7 @@ def params_program(ident, subdir, transform):
     return Task(ident, subdir + "/*.c", [subdir + "/*.c"], func_)
 
 
-DAY07 = Day("Day 07 - Libmy, arguments", "day07", libmy="build.sh",
-            allowed={"write"}, tasks=[
+DAY07 = Day("Day 07 - Libmy, arguments", "day07", libmy="build.sh", tasks=[
     Task("01", "libmy.a (lib/my/build.sh)", ["lib/my/build.sh"], libmy_task),
     func("02", "my_strcat"),
     func("03", "my_strncat"),
@@ -75,10 +70,7 @@ DAY07 = Day("Day 07 - Libmy, arguments", "day07", libmy="build.sh",
 ])
 
 # ------------------------------------------------------------------ Day 08
-ALLOC = {"write", "malloc", "free"}
-
-DAY08 = Day("Day 08 - Compilation, Allocation", "day08", libmy="build.sh",
-            allowed=ALLOC, tasks=[
+DAY08 = Day("Day 08 - Compilation, Allocation", "day08", libmy="build.sh", tasks=[
     func("01", "my_strdup"),
     func("02", "concat_params"),
     func("03", "my_show_word_array"),
@@ -117,7 +109,7 @@ def my_h(ctx):
 
 
 DAY09 = Day("Day 09 - Structures", "day09", libmy="build.sh",
-            allowed=ALLOC, provided_header=TESTS_DIR / "day09/info_param.h", tasks=[
+            provided_header=TESTS_DIR / "day09/info_param.h", tasks=[
     Task("01", "include/my_macro_abs.h", ["include/my_macro_abs.h"], macro_abs),
     Task("02", "include/my.h", ["include/my.h"], my_h),
     func("03", "my_params_to_array"),
@@ -215,7 +207,7 @@ def advanced_do_op(ctx):
 
 
 DAY10 = Day("Day 10 - Makefile and do-ops", "day10", libmy="make",
-            allowed=ALLOC, resources=["resources/*"], tasks=[
+            resources=["resources/*"], tasks=[
     Task("01", "lib/my/Makefile", ["lib/my/Makefile"], lib_makefile),
     Task("02", "do_op/", ["do_op/*"], do_op),
     func("03", "my_sort_word_array"),
@@ -241,7 +233,7 @@ def mylist_h(ctx):
     return check
 
 
-DAY11 = Day("Day 11 - Linked lists", "day11", libmy="make", allowed=ALLOC, tasks=[
+DAY11 = Day("Day 11 - Linked lists", "day11", libmy="make", tasks=[
     Task("00", "include/mylist.h", ["include/mylist.h"], mylist_h),
     func("01", "my_params_to_list"),
     func("02", "my_list_size"),

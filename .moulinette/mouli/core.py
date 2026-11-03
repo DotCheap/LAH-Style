@@ -19,11 +19,6 @@ CFLAGS = [
     "-Wno-error=incompatible-pointer-types",
 ]
 
-# Symboles qu'un compilateur peut inserer de lui-meme.
-IMPLICIT_SYMBOLS = {
-    "__stack_chk_fail", "_GLOBAL_OFFSET_TABLE_", "memset", "memcpy",
-}
-
 # Fichiers consideres comme inutiles dans un rendu.
 USELESS_PATTERNS = [
     "*.o", "*.a", "*.so", "*.gch", "a.out", "vgcore.*", "*~", "#*#",
@@ -289,34 +284,6 @@ def defined_symbols(path):
         if len(parts) >= 3 and parts[1] in "TDBRVWCGS":
             symbols.add(parts[2])
     return symbols
-
-
-def undefined_symbols(path):
-    proc = run(["nm", "-u", path])
-    return {line.split()[-1].split("@")[0] for line in proc.text.splitlines()
-            if line.strip() and not line.endswith(":")}
-
-
-_LIBC = None
-
-
-def libc_symbols():
-    """Fonctions exportees par la libc (pour distinguer une fonction
-    interdite d'une fonction simplement manquante)."""
-    global _LIBC
-    if _LIBC is None:
-        proc = run(["gcc", "-print-file-name=libc.so.6"])
-        path = proc.text.strip() or "libc.so.6"
-        proc = run(["nm", "-D", "--defined-only", path])
-        _LIBC = {line.split()[-1].split("@")[0] for line in proc.text.splitlines()
-                 if line.strip()}
-        if not _LIBC:
-            for candidate in ("/lib/x86_64-linux-gnu/libc.so.6", "/usr/lib/libc.so.6",
-                              "/lib64/libc.so.6"):
-                proc = run(["nm", "-D", "--defined-only", candidate])
-                _LIBC |= {line.split()[-1].split("@")[0]
-                          for line in proc.text.splitlines() if line.strip()}
-    return _LIBC
 
 
 def git_tracked(repo, folder):

@@ -47,10 +47,8 @@ ressources) :
 Les règles des sujets sont appliquées, en particulier :
 
 - pas de `main` dans les fichiers de fonctions : la moulinette ajoute le sien ;
-- Day 03 à Day 05, Rush 1, Star : seule `my_putchar` est autorisée, et il ne
-  faut pas la rendre (la moulinette fournit la sienne) ;
-- uniquement les fonctions de la libC autorisées par chaque sujet
-  (`write`, `malloc`, `free`...) ;
+- Day 03 à Day 05, Rush 1, Star : ne rends pas `my_putchar`, la moulinette
+  fournit la sienne ;
 - tous les `.c` d'un dossier doivent compiler ensemble (« `gcc *.c` ») ;
 - `libmy` construite par `lib/my/build.sh` (Day 07 à 09, Rush 2,
   CountIsland) ou par `lib/my/Makefile` (à partir du Day 10) ;

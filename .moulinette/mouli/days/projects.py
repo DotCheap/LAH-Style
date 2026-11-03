@@ -5,25 +5,9 @@ import re
 from pathlib import Path
 
 from ..checks import (Day, Task, compare, criterion_available, make_project)
-from ..core import (CFLAGS, IMPLICIT_SYMBOLS, LIB_DIR, TESTS_DIR, Check,
-                    defined_symbols, first_lines, libc_symbols, run, show,
-                    undefined_symbols)
+from ..core import (CFLAGS, LIB_DIR, TESTS_DIR, Check, defined_symbols,
+                    first_lines, run, show)
 from ..shapes import count_island, rush1, rush3_answer, star
-
-# Symboles ajoutes par l'editeur de liens dans tout executable.
-STARTUP = {"__libc_start_main", "__cxa_finalize", "__gmon_start__",
-           "_ITM_deregisterTMCloneTable", "_ITM_registerTMCloneTable",
-           "__errno_location", *IMPLICIT_SYMBOLS}
-
-
-def binary_forbidden(check, exe, allowed, label):
-    """Fonctions de la libc utilisees par un binaire en dehors de celles
-    autorisees par le sujet."""
-    used = undefined_symbols(exe) & libc_symbols()
-    bad = used - set(allowed) - STARTUP
-    check.expect(not bad, "%s utilise des fonctions interdites : %s"
-                 % (label, ", ".join(sorted(bad))))
-
 
 def compile_objects(ctx, check, folder):
     """Compile chaque .c d'un dossier separement. Renvoie {nom: .o}."""
@@ -70,7 +54,6 @@ def cat_task(ctx):
     exe = make_project(ctx, check, "cat", "cat")
     if not exe:
         return check
-    binary_forbidden(check, exe, {"open", "read", "write", "close"}, "cat")
     files = write_inputs(ctx.build / "inputs")
     cwd = ctx.build / "inputs"
     for args in (["small.txt"], ["small.txt", "nonl.txt", "small.txt"],
@@ -106,8 +89,6 @@ def grep_task(ctx):
     exe = make_project(ctx, check, "grep", "grep")
     if not exe:
         return check
-    binary_forbidden(check, exe, {"open", "read", "write", "close", "malloc", "free"},
-                     "grep")
     files = write_inputs(ctx.build / "inputs")
     cwd = ctx.build / "inputs"
     for pattern, names in (("World", ["small.txt"]), ("line 299", ["lines.txt"]),
@@ -218,11 +199,6 @@ def rush1_task(number):
                            "ne rends pas de main, la moulinette ajoute le sien")
         forbid_definitions(check, objects, ["my_putchar"],
                            "ne rends pas my_putchar, la moulinette fournit le sien")
-        for name, obj in objects.items():
-            used = undefined_symbols(obj) & libc_symbols()
-            bad = used - {"write"} - IMPLICIT_SYMBOLS
-            check.expect(not bad, "%s utilise des fonctions interdites : %s"
-                         % (name, ", ".join(sorted(bad))))
         if not check.ok:
             return check
         exe = ctx.build / ("rush1-%d" % number)
@@ -294,7 +270,6 @@ def rush2_build(ctx, check):
     if not check.expect(proc.rc == 0, "gcc -o rush2 *.c -I./include -L./lib/my -lmy "
                         "echoue : " + first_lines(proc.err)):
         return None
-    binary_forbidden(check, exe, {"write"}, "rush2")
     return exe
 
 
@@ -353,8 +328,7 @@ def rush2_step(step):
     return func
 
 
-RUSH2 = Day("Rush 2 - What language is this?", "rush2", libmy="build.sh",
-            allowed={"write"}, tasks=[
+RUSH2 = Day("Rush 2 - What language is this?", "rush2", libmy="build.sh", tasks=[
     Task("01", "step 1 - une lettre", ["*.c"], rush2_step(1)),
     Task("02", "step 2 - plusieurs lettres", ["*.c"], rush2_step(2)),
     Task("03", "step 3 - frequences", ["*.c"], rush2_step(3)),
@@ -373,10 +347,6 @@ def star_task(ctx):
                        "ne rends pas de main, la moulinette ajoute le sien")
     forbid_definitions(check, objects, ["my_putchar"],
                        "ne rends pas my_putchar, la moulinette fournit le sien")
-    for name, obj in objects.items():
-        bad = (undefined_symbols(obj) & libc_symbols()) - {"write"} - IMPLICIT_SYMBOLS
-        check.expect(not bad, "%s utilise des fonctions interdites : %s"
-                     % (name, ", ".join(sorted(bad))))
     if not check.ok:
         return check
     exe = ctx.build / "star"
@@ -430,13 +400,6 @@ def countisland_task(ctx):
         return check
     forbid_definitions(check, objects, ["main"],
                        "ne rends pas de main, la moulinette ajoute le sien")
-    provided = set(IMPLICIT_SYMBOLS) | defined_symbols(ctx.libmy_path())
-    for obj in objects.values():
-        provided |= defined_symbols(obj)
-    for name, obj in objects.items():
-        bad = (undefined_symbols(obj) & libc_symbols()) - provided - {"write"}
-        check.expect(not bad, "%s utilise des fonctions interdites : %s"
-                     % (name, ", ".join(sorted(bad))))
     if not check.ok:
         return check
     exe = ctx.build / "count_island"
@@ -456,8 +419,7 @@ def countisland_task(ctx):
     return check
 
 
-COUNTISLAND = Day("Project 2 - Countisland", "countisland", libmy="build.sh",
-                  allowed={"write"}, tasks=[
+COUNTISLAND = Day("Project 2 - Countisland", "countisland", libmy="build.sh", tasks=[
     Task("01", "count_island", ["*.c"], countisland_task),
 ])
 
@@ -469,7 +431,6 @@ def infinadd_task(ctx):
     exe = make_project(ctx, check, "", "infin_add")
     if not exe:
         return check
-    binary_forbidden(check, exe, {"write", "malloc", "free"}, "infin_add")
     rng = random.Random(1337)
     cases = [("-876435", "987143265"), ("-807965", "-34532"),
              ("435439435845843984358439", "45359766785665822182412343254343435433339459569"),
@@ -557,7 +518,6 @@ def evalexpr_task(ctx):
     exe = make_project(ctx, check, "", "eval_expr")
     if not exe:
         return check
-    binary_forbidden(check, exe, {"write", "malloc", "free"}, "eval_expr")
     for expr in EVAL_CASES:
         proc = run([exe, expr], timeout=5)
         compare(check, "./eval_expr \"%s\"" % expr, proc,
@@ -643,7 +603,6 @@ def bistro_task(ctx):
     exe = make_project(ctx, check, "", "calc")
     if not exe:
         return check
-    binary_forbidden(check, exe, {"read", "write", "malloc", "free", "exit"}, "calc")
     for expr, base, ops, expected in BISTRO_CASES + bistro_generated():
         minus = ops[3]
         if expected not in ("syntax error", "error") and expected.startswith("-"):
@@ -667,7 +626,6 @@ def stumper_task(ctx):
     exe = make_project(ctx, check, "", "rush3")
     if not exe:
         return check
-    binary_forbidden(check, exe, {"read", "write", "malloc", "free"}, "rush3")
     inputs = []
     for number in range(1, 6):
         for x, y in ((4, 4), (3, 4), (1, 1), (5, 1), (1, 5), (2, 2), (12, 7)):

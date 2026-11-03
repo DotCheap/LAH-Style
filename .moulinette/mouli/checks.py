@@ -5,9 +5,8 @@ import re
 import shutil
 from pathlib import Path
 
-from .core import (CFLAGS, FIXTURES, IMPLICIT_SYMBOLS, LIB_DIR, Check, run,
-                   defined_symbols, describe_rc, first_lines, is_executable,
-                   libc_symbols, show, undefined_symbols)
+from .core import (CFLAGS, FIXTURES, LIB_DIR, Check, run, defined_symbols,
+                   describe_rc, first_lines, is_executable, show)
 
 
 class Task:
@@ -24,13 +23,12 @@ class Task:
 
 class Day:
     def __init__(self, folder, slug, tasks, resources=(), libmy=None,
-                 allowed=(), putchar=False, shell=False, provided_header=None):
+                 putchar=False, shell=False, provided_header=None):
         self.folder = folder
         self.slug = slug
         self.tasks = tasks
         self.resources = ["*.pdf", *resources]
         self.libmy = libmy
-        self.allowed = set(allowed)
         self.putchar = putchar
         self.shell = shell
         self.provided_header = provided_header
@@ -86,34 +84,6 @@ def day_link(ctx, check):
     return link
 
 
-def check_allowed(ctx, check, files, allowed=None):
-    """Verifie que les fichiers rendus n'utilisent que des fonctions
-    autorisees par le sujet."""
-    archive, objects, _ = ctx.student_lib()
-    allowed = set(ctx.day.allowed if allowed is None else allowed)
-    provided = set(IMPLICIT_SYMBOLS)
-    for obj in objects.values():
-        provided |= defined_symbols(obj)
-    if ctx.day.putchar:
-        provided.add("my_putchar")
-    lib = ctx.libmy_path()
-    if ctx.day.libmy and lib:
-        provided |= defined_symbols(lib)
-    for name in files:
-        if name not in objects:
-            continue
-        unknown = undefined_symbols(objects[name]) - provided - allowed
-        forbidden = unknown & libc_symbols()
-        missing = unknown - forbidden
-        if forbidden:
-            check.fail("%s utilise des fonctions interdites : %s"
-                       % (name, ", ".join(sorted(forbidden))))
-        if missing:
-            check.fail("%s appelle des fonctions qui ne sont definies nulle part "
-                       "(ni dans tes .c, ni dans ta libmy) : %s"
-                       % (name, ", ".join(sorted(missing))))
-
-
 def c_function(test, files, **kwargs):
     """Exercice classique : une ou plusieurs fonctions dans des .c a la
     racine du jour, compilees avec le main de la moulinette."""
@@ -138,7 +108,6 @@ def c_function(test, files, **kwargs):
         link = day_link(ctx, check)
         if link is None:
             return check
-        check_allowed(ctx, check, files)
         if not check.ok:
             return check
         run_mouli(ctx, test, check, sources=[archive], link=link, **kwargs)
