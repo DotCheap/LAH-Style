@@ -7,5 +7,8 @@ int my_isneg (int n) {
  if (n<0){
     putchar('N');
  }
+ if (n=0){
+    putchar ('P');
+ }
     return 0;
 }
