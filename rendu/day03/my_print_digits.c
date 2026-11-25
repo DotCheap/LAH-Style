@@ -7,4 +7,5 @@ int my_print_digits(void){
   nombre = nombre + 1;
   }
     return 0;
+}
 
